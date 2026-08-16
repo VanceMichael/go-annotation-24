@@ -59,7 +59,7 @@ func Compute(b model.Batch) (Yield, error) {
 		GlycerolMassKG: round4(b.GlycerolMassKG),
 		LossMassKG:     round4(b.LossMassKG),
 	}
-	y.Ratio = round4(b.ProductVolumeL / b.FeedMassKG)
+	y.Ratio = round4(productMass / b.FeedMassKG)
 	y.BalanceGapKG = round4(b.FeedMassKG - (productMass + b.GlycerolMassKG + b.LossMassKG))
 	y.Balanced = math.Abs(y.BalanceGapKG) <= b.FeedMassKG*BalanceTolerance
 	return y, nil
